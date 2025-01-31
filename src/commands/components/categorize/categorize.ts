@@ -7,10 +7,10 @@ export async function categorize(text: string, msgId: number, taskNum: number, u
     if(text === lvls[0]) {
         await easyLvl(msgId, taskNum, userId)
     }
-    // if(text === keyboardStart[1]) {
-    //     await midLvl(msgId, chatIid)
-    // }
-    // if(text === keyboardStart[2]) {
-    //     await highLvl(msgId, chatIid)
-    // }
+    if(text === lvls[1]) {
+        await midLvl(msgId, taskNum, userId)
+    }
+    if(text === lvls[2]) {
+        await highLvl(msgId, taskNum, userId)
+    }
 }
