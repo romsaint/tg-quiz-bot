@@ -1,34 +1,40 @@
-import { bot, lvls } from "../../.."
+import { bot, lvls, statisticsState } from "../../.."
 
 export async function midLvl(msgId: number, taskNum: number, userId: number) {
     const text = `🚀 Уровень Intermediate\n\n`
 
     if (taskNum === 0) {
-        await bot.editMessageText(`${text}Что выведет console.log(1 < 2 < 3 > 0)?`, {
+        const question = 'Что выведет console.log(1 < 2 < 3 > 0)?'
+        const correct = "true"
+        await bot.editMessageText(`${text}${question}`, {
             reply_markup: {
                 inline_keyboard: [
-                    [{ text: "true", callback_data: `${userId}-${lvls[1]}-${taskNum}-1` }],
-                    [{ text: 'false', callback_data: `${userId}-${lvls[1]}-${taskNum}-0` }],
-                    [{ text: 'Ошибка', callback_data: `${userId}-${lvls[1]}-${taskNum}-0` }],
-                    [{ text: 'NaN', callback_data: `${userId}-${lvls[1]}-${taskNum}-0` }],
+                    [{ text: correct, callback_data: `${lvls[1]}-${taskNum}-1-${correct}` }],
+                    [{ text: 'false', callback_data: `${lvls[1]}-${taskNum}-0-false` }],
+                    [{ text: 'Ошибка', callback_data: `${lvls[1]}-${taskNum}-0-Ошибка` }],
+                    [{ text: 'NaN', callback_data: `${lvls[1]}-${taskNum}-0-NaN` }],
                 ]
             },
             chat_id: userId,
             message_id: msgId
         })
+        statisticsState[taskNum] = {text: question, correctAns: correct, yourAns: null}
     }
     if (taskNum === 1) {
-        await bot.editMessageText(`${text}Какой метод преобразует JSON в объект?`, {
+        const question = 'Какой метод преобразует JSON в объект?'
+        const correct = "JSON.parse()"
+        await bot.editMessageText(`${text}${question}`, {
             reply_markup: {
                 inline_keyboard: [
-                    [{ text: "JSON.parse()", callback_data: `${userId}-${lvls[1]}-${taskNum}-1` }],
-                    [{ text: 'JSON.stringify()', callback_data: `${userId}-${lvls[1]}-${taskNum}-0` }],
-                    [{ text: 'JSON.encode()', callback_data: `${userId}-${lvls[1]}-${taskNum}-0` }],
-                    [{ text: 'JSON.decode()', callback_data: `${userId}-${lvls[1]}-${taskNum}-0` }],
+                    [{ text: correct, callback_data: `${lvls[1]}-${taskNum}-1-${correct}` }],
+                    [{ text: 'JSON.stringify()', callback_data: `${lvls[1]}-${taskNum}-0-JSON.stringify()` }],
+                    [{ text: 'JSON.encode()', callback_data: `${lvls[1]}-${taskNum}-0-JSON.encode()` }],
+                    [{ text: 'JSON.decode()', callback_data: `${lvls[1]}-${taskNum}-0-JSON.decode()` }],
                 ]
             },
             chat_id: userId,
             message_id: msgId
         })
+        statisticsState[taskNum] = {text: question, correctAns: correct, yourAns: null}
     }
 }

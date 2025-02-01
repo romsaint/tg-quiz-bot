@@ -12,9 +12,9 @@ export async function onStart(msg: TelegramBot.Message) {
             await bot.sendMessage(userId, 'Выбери уровень сложности:', {
                 reply_markup: {
                     inline_keyboard: [
-                        [{ text: lvls[0], callback_data: `${userId}-${lvls[0]}` }],
-                        [{ text: lvls[1], callback_data: `${userId}-${lvls[1]}` }],
-                        [{ text: lvls[2], callback_data: `${userId}-${lvls[2]}` }],
+                        [{ text: lvls[0], callback_data: `${lvls[0]}` }],
+                        [{ text: lvls[1], callback_data: `${lvls[1]}` }],
+                        [{ text: lvls[2], callback_data: `${lvls[2]}` }],
                     ]
                 }
             });

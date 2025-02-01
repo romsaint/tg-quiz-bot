@@ -20,6 +20,7 @@ export const commands = [
 export const lvls: string[] = ["Новичок", "Продвинутый", "Эксперт"]
 export const taskState: { [key: number]: number } = {}
 export const scoreState: { [key: number]: number } = {}
+export const statisticsState: {[taskNum: number]: {text: string, correctAns: string, yourAns: string | null}} = {}
 
 bot.setMyCommands(commands);
 
